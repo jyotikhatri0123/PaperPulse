@@ -230,11 +230,19 @@ with tabs[0]:
         if not qs:
             c2.warning("No numbered questions found. Try the paste box below.")
         rows += [(yr, q, m) for q, m in qs]
-    with st.expander("Or paste questions manually"):
-        py = st.text_input("Year of pasted paper", key="paste_year")
-        pt = st.text_area("One numbered question per line, e.g. '1. Define ... [2]'", height=160)
-        if py and pt.strip():
-            rows += [(py, q, m) for q, m in split_questions(pt.splitlines())]
+        with st.expander("Or paste questions manually"):
+        st.caption("Start each paper with a line like ## 2082, then its numbered questions. You can paste many papers at once.")
+        pt = st.text_area("Pasted papers", height=260)
+        cur_year, block = None, {}
+        for line in pt.splitlines():
+            hm = re.match(r"^\s*##\s*(\S+)", line)
+            if hm:
+                cur_year = hm.group(1)
+                block.setdefault(cur_year, [])
+            elif cur_year and line.strip():
+                block[cur_year].append(line.strip())
+        for y, ls in block.items():
+            rows += [(y, q, mk) for q, mk in split_questions(ls)]
 
 df = pd.DataFrame(rows, columns=["year", "question", "marks"])
 if not df.empty:
