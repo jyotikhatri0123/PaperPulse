@@ -230,7 +230,7 @@ with tabs[0]:
         if not qs:
             c2.warning("No numbered questions found. Try the paste box below.")
         rows += [(yr, q, m) for q, m in qs]
-        with st.expander("Or paste questions manually"):
+    with st.expander("Or paste questions manually"):
         st.caption("Start each paper with a line like ## 2082, then its numbered questions. You can paste many papers at once.")
         pt = st.text_area("Pasted papers", height=260)
         cur_year, block = None, {}
