@@ -57,8 +57,11 @@ def ocr_available() -> bool:
 
 def ocr_image(img) -> str:
     import pytesseract
-    return pytesseract.image_to_string(img)
-
+    from PIL import ImageOps
+    img = ImageOps.autocontrast(ImageOps.grayscale(img))
+    if img.width < 2000:
+        img = img.resize((2000, int(img.height * 2000 / img.width)))
+    return pytesseract.image_to_string(img, config="--psm 6")
 
 @st.cache_data(show_spinner="Reading file...")
 def read_file(name: str, data: bytes):
