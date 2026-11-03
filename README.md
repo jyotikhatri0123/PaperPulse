@@ -2,7 +2,7 @@
 
 PaperPulse is an exam paper pattern miner. It reads past exam papers (PDF, photo or text), maps each question to a chapter, and shows which topics are asked most, which questions repeat, and how well earlier papers predict later ones.
 
-Live app: https://YOUR-LINK.streamlit.app
+Live app: https://paperpulses.streamlit.app
 
 ## Problem
 
