@@ -334,7 +334,7 @@ def make_plan(pri, days, hpd, weak):
 
 
 # ------------------------------------------------------------------------- UI
-st.set_page_config(page_title=APP_NAME, layout="wide", page_icon=None)
+st.set_page_config(page_title=APP_NAME, layout="wide", page_icon="logo.png")
 st.markdown("""<style>
 .block-container{padding-top:1.2rem;max-width:1200px}
 .hdr{background:linear-gradient(90deg,#0B2545,#0B5FA5);color:#fff;padding:22px 28px;border-radius:8px;margin-bottom:12px}
